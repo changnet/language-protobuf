@@ -1,0 +1,127 @@
+'scopeName': 'source.protobuf'
+'name': 'protobuf'
+'fileTypes': ['proto']
+'patterns': [
+  {
+    'captures':
+      '1':
+        'name': 'storage.type.custom.protobuf'
+      '2':
+        'name': 'entity.name.class.protobuf'
+    'match': '\\b(message|enum|service)(\\s+\\w+)\\b'
+    'name': 'entity.name.class.protobuf'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'storage.modifier.protobuf'
+      '2':
+        'name': 'entity.name.instance.protobuf'
+    'match': '\\b(required|optional|repeated)(\\s+\\w+)\\b'
+    'name': 'entity.name.instance.protobuf'
+  }
+  {
+    'match': '\\b(message|enum|service)\\b'
+    'name': 'storage.type.custom.protobuf'
+  }
+  {
+    'match': '\\b(rpc|returns)\\b'
+    'name': 'keyword.protobuf'
+  }
+  {
+    'match': '\\b[0-9]+\\b'
+    'name': 'constant.numeric.protobuf'
+  }
+  {
+    'match': '\\b(required|optional|repeated)\\b'
+    'name': 'storage.modifier.protobuf'
+  }
+  {
+    'match': '\\b(default)\\b'
+    'name': 'storage.modifier.array.protobuf'
+  }
+  {
+    'match': '\\b(bool|double|enum|float|int32|uint32|int64|uint64|sint32|sint64|fixed32|fixed64|sfixed32|sfix64|string|bytes)\\b'
+    'name': 'storage.type.protobuf'
+  }
+  {
+    'match': '\\b(requireda|optionala|repeateda)\\b'
+    'name': 'storage.type.custom.protobuf'
+  }
+  {
+    'match': '\\boption\\b'
+    'name': 'support.type.protobuf'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.other.package.protobuf'
+      '2':
+        'name': 'storage.modifier.package.protobuf'
+      '3':
+        'name': 'punctuation.terminator.protobuf'
+    'match': '^\\s*(package)\\b(?:\\s*([^ ;$]+)\\s*(;)?)?'
+    'name': 'meta.package.protobuf'
+  }
+  {
+    'begin': '/\\*'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.begin.protobuf'
+    'end': '\\*/'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.end.protobuf'
+    'name': 'comment.block.protobuf'
+  }
+  {
+    'begin': '(^[ \\t]+)?(?=//)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.whitespace.comment.leading.protobuf'
+    'end': '(?!\\G)'
+    'patterns': [
+      {
+        'begin': '//'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.protobuf'
+        'end': '\\n'
+        'name': 'comment.line.double-slash.protobuf'
+        'patterns': [
+          {
+            'match': '(?>\\\\\\s*\\n)'
+            'name': 'punctuation.separator.continuation.protobuf'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'match': '\\bimport\\b'
+    'name': 'storage.modifier.protobuf'
+  }
+  {
+    'begin': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.protobuf'
+    'end': '"'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.protobuf'
+    'name': 'string.quoted.double.protobuf'
+    'patterns': [
+      {
+        'include': 'punctuation.definition.string.begin.protobuf'
+      }
+      {
+        'include': 'punctuation.definition.string.end.protobuf'
+      }
+      {
+        'match': '\\\\.'
+        'name': 'constant.character.escape.protobuf'
+      }
+    ]
+  }
+]

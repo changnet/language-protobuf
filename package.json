@@ -1,5 +1,5 @@
 {
-  "name": "language-protobuf",
+  "name": "language-proto",
   "version": "0.1.0",
   "description": "Syntax highlighting for protobuf",
   "engines": {

@@ -1,0 +1,120 @@
+
+syntax = "proto3";
+/*
+ * block comment test
+ *
+ */
+
+package Test.person;
+
+import "test_ex.proto"
+message Pserson
+{
+    optional int id      = 1;
+    required string name = 2; //comment test
+    repeated float lt    = 3 [packed=true];
+    OBSOLETE_ optional int32 x     = 4;  /* no longer use */
+    optional bool bx     = 5;[default = 10]
+
+    enum Corpus {
+        UNIVERSAL = 0;
+        WEB       = 1;
+        IMAGES    = 2;
+        LOCAL     = 3;
+        NEWS      = 4;
+        PRODUCTS  = 5;
+        VIDEO     = 6;
+    }
+
+    optional Corpus corpus         = 6 [default = UNIVERSAL];
+    optional Person_ex.phone phone = 7;  /* in test_ex.proto */
+
+    /* Group fields are no longer supported in proto3 syntax */
+    optional group result          = 8 {
+        required bytes data  = 1;
+        optional bool  com   = 2;
+    }
+
+    extensions 100 to 199;
+    extensions 1000 to max;
+}
+
+service SearchService {
+  rpc Search (SearchRequest) returns (SearchResponse);
+}
+
+option java_package = "com.example.foo";
+option optimize_for = CODE_SIZE;   /* SPEED, CODE_SIZE,or LITE_RUNTIME */
+
+/* cc_generic_services, java_generic_services, py_generic_services */
+option cc_generic_services = false;
+option java_generic_services = false;
+option py_generic_services = false;
+
+message OldFormat
+{
+    option message_set_wire_format = true;
+    required int id = 1 [deprecated=true];
+}
+
+
+import "google/protobuf/descriptor.proto";
+extend google.protobuf.MessageOptions {
+  optional string my_option = 51234;
+}
+
+message MyMessage {
+  option (my_option) = "Hello world!";
+}
+
+// new in v3
+message TestMessage {
+  reserved 2, 15, 9 to 11, 3;
+}
+
+message TestMessage {
+  reserved "foo", "bar";
+}
+
+option cc_enable_arenas = true;
+option optimize_for = LITE_RUNTIME;
+
+import "google/protobuf/unittest_lite.proto";
+
+package protobuf_unittest;
+
+option java_multiple_files = true;
+option java_outer_classname = "SourceContextProto";
+option java_package = "com.google.protobuf";
+option csharp_namespace = "Google.Protobuf.WellKnownTypes";
+option objc_class_prefix = "GPB";
+
+message TestMapLite {
+  map<int32   , int32   > map_int32_int32       = 1;
+  map<int64   , int64   > map_int64_int64       = 2;
+  map<uint32  , uint32  > map_uint32_uint32     = 3;
+  map<uint64  , uint64  > map_uint64_uint64     = 4;
+  map<sint32  , sint32  > map_sint32_sint32     = 5;
+  map<sint64  , sint64  > map_sint64_sint64     = 6;
+  map<fixed32 , fixed32 > map_fixed32_fixed32   = 7;
+  map<fixed64 , fixed64 > map_fixed64_fixed64   = 8;
+  map<sfixed32, sfixed32> map_sfixed32_sfixed32 = 9;
+  map<sfixed64, sfixed64> map_sfixed64_sfixed64 = 10;
+  map<int32   , float   > map_int32_float       = 11;
+  map<int32   , double  > map_int32_double      = 12;
+  map<bool    , bool    > map_bool_bool         = 13;
+  map<string  , string  > map_string_string     = 14;
+  map<int32   , bytes   > map_int32_bytes       = 15;
+  map<int32   , MapEnumLite> map_int32_enum     = 16;
+  map<int32   , ForeignMessageLite> map_int32_foreign_message = 17;
+  map<int32, int32> teboring = 18;
+}
+
+// v3 no optional
+import "google/protobuf/any.proto";
+message Foo {
+  google.protobuf.Any any_field = 1;
+}
+message Bar {
+  int32 value = 1;
+}

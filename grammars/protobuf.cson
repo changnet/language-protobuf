@@ -5,28 +5,82 @@
   {
     'captures':
       '1':
-        'name': 'storage.type.custom.protobuf'
+        'name': 'entity.name.class.custom.protobuf'
       '2':
-        'name': 'entity.name.class.protobuf'
-    'match': '\\b(message|enum|service)(\\s+\\w+)\\b'
-    'name': 'entity.name.class.protobuf'
+        'name': 'variable.parameter.protobuf'
+    'match': '\\b(message|enum|service|extend)\\s+([.|\\w]+)\\b'
+    'name': 'custom.storage.protobuf'
   }
   {
     'captures':
       '1':
-        'name': 'storage.modifier.protobuf'
+        'name': 'storage.type.instance.protobuf'
       '2':
-        'name': 'entity.name.instance.protobuf'
-    'match': '\\b(required|optional|repeated)(\\s+\\w+)\\b'
-    'name': 'entity.name.instance.protobuf'
+        'name': 'instance.name.protobuf'
+      '3':
+        'name': 'constant.numeric.protobuf'
+    'match': '\\s*([.|\\w]+)\\s+(\\w+)\\s*=\\s*(\\d+)\\b'
+    'name': 'member.protobuf'
   }
   {
-    'match': '\\b(message|enum|service)\\b'
-    'name': 'storage.type.custom.protobuf'
+    'match': '\\b(message|enum|service|extend)\\b'
+    'name': 'entity.name.class.custom.protobuf'
   }
   {
-    'match': '\\b(rpc|returns)\\b'
-    'name': 'keyword.protobuf'
+    'captures':
+      '1':
+        'name': 'keyword.rpc.rpc.protobuf'
+      '2':
+        'name': 'rpc.function.protobuf'
+      '3':
+        'name': 'rpc.request.protobuf'
+      '4':
+        'name': 'keyword.rpc.returns.protobuf'
+      '5':
+        'name': 'rpc.response.protobuf'
+    'match': '\\b(rpc)\\s+(\\w+)\\s+\\(\\s*([.|\\w]+)\\s*\\)\\s+(returns)\\s+\\(\\s*([.|\\w]+)\\s*\\)'
+    'name': 'rpc.protobuf'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.extensions.extensions.protobuf'
+      '2':
+        'name': 'constant.numeric.extensions.min.protobuf'
+      '3':
+        'name': 'keyword.extensions.to.protobuf'
+      '4':
+        'name': 'constant.numeric.extensions.max.protobuf'
+    'match': '\\b(extensions)\\s+([\\d]+)\\s+(to)\\s+(max|[\\d]+)\\b'
+    'name': 'extensions.protobuf'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.map.protobuf'
+      '2':
+        'name': 'storage.type.key.protobuf'
+      '3':
+        'name': 'storage.type.value.protobuf'
+    'match': '\\b(map)\\s*<\\s*([.|\\w]+)\\s*,\\s*([.|\\w]+)\\s*>'
+    'name': 'map.protobuf'
+  }
+  {
+    'begin': 'reserved'
+    'beginCaptures':
+      '0':
+        'name': 'keyword.reserved.begin.protobuf'
+    'end': ';'
+    'endCaptures':
+      '0':
+        'name': 'reserved.end.protobuf'
+    'name': 'reserved.protobuf'
+    'patterns': [
+      {
+        'match': '\\bto\\b'
+        'name': 'keyword.reserved.to.protobuf'
+      }
+    ]
   }
   {
     'match': '\\b[0-9]+\\b'
@@ -34,34 +88,34 @@
   }
   {
     'match': '\\b(required|optional|repeated)\\b'
-    'name': 'storage.modifier.protobuf'
+    'name': 'storage.modifier.prefix.protobuf'
   }
   {
-    'match': '\\b(default)\\b'
-    'name': 'storage.modifier.array.protobuf'
+    'match': '\\b(default|packed|deprecated)\\b'
+    'name': 'support.type.suffix.protobuf'
   }
   {
-    'match': '\\b(bool|double|enum|float|int32|uint32|int64|uint64|sint32|sint64|fixed32|fixed64|sfixed32|sfix64|string|bytes)\\b'
+    'match': '\\b(bool|double|enum|float|int32|uint32|int64|uint64|sint32|sint64|fixed32|fixed64|sfixed32|sfix64|string|bytes|int|sfixed64|true|false)\\b'
     'name': 'storage.type.protobuf'
   }
   {
-    'match': '\\b(requireda|optionala|repeateda)\\b'
-    'name': 'storage.type.custom.protobuf'
+    'match': '\\b(option|syntax|import)\\b'
+    'name': 'support.function.decl.protobuf'
   }
   {
-    'match': '\\boption\\b'
-    'name': 'support.type.protobuf'
+      'match': '\\b(SPEED|CODE_SIZE|LITE_RUNTIME|OBSOLETE_)\\b'
+      'name': 'support.constant.protobuf'
   }
   {
     'captures':
       '1':
         'name': 'keyword.other.package.protobuf'
       '2':
-        'name': 'storage.modifier.package.protobuf'
+        'name': 'support.class.package.protobuf'
       '3':
         'name': 'punctuation.terminator.protobuf'
     'match': '^\\s*(package)\\b(?:\\s*([^ ;$]+)\\s*(;)?)?'
-    'name': 'meta.package.protobuf'
+    'name': 'package.protobuf'
   }
   {
     'begin': '/\\*'
@@ -96,10 +150,6 @@
         ]
       }
     ]
-  }
-  {
-    'match': '\\bimport\\b'
-    'name': 'storage.modifier.protobuf'
   }
   {
     'begin': '"'

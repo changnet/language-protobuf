@@ -8,13 +8,20 @@ syntax = "proto3";
 package Test.person;
 
 import "test_ex.proto"
+
+message Bar {
+    pool v = 0;
+    int32 value = 1;
+}
+
 message Pserson
 {
     optional int id      = 1;
     required string name = 2; //comment test
     repeated float lt    = 3 [packed=true];
     OBSOLETE_ optional int32 x     = 4;  /* no longer use */
-    optional bool bx     = 5;[default = 10]
+    optional bool to     = 5 [default = 10];
+    bool rpc = 6
 
     enum Corpus {
         UNIVERSAL = 0;
@@ -32,7 +39,7 @@ message Pserson
     /* Group fields are no longer supported in proto3 syntax */
     optional group result          = 8 {
         required bytes data  = 1;
-        optional bool  com   = 2;
+        optional bool  max   = 2;
     }
 
     extensions 100 to 199;
@@ -71,6 +78,7 @@ message MyMessage {
 message TestMessage {
   reserved 2, 15, 9 to 11, 3;
 }
+
 
 message TestMessage {
   reserved "foo", "bar";
@@ -112,9 +120,13 @@ message TestMapLite {
 
 // v3 no optional
 import "google/protobuf/any.proto";
+
 message Foo {
+    tst t = 0;
   google.protobuf.Any any_field = 1;
 }
+
 message Bar {
+    pool v = 0;
   int32 value = 1;
 }

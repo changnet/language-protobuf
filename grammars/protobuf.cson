@@ -38,7 +38,7 @@
         'name': 'keyword.rpc.returns.protobuf'
       '5':
         'name': 'rpc.response.protobuf'
-    'match': '\\b(rpc)\\s+(\\w+)\\s+\\(\\s*([.|\\w]+)\\s*\\)\\s+(returns)\\s+\\(\\s*([.|\\w]+)\\s*\\)'
+    'match': '\\b(rpc)\\s+(\\w+)\\s+\\(\\s*([.|(?:stream\\s+\\w)]+)\\s*\\)\\s+(returns)\\s+\\(\\s*([.|(?:stream\\s+\\w)]+)\\s*\\)'
     'name': 'rpc.protobuf'
   }
   {

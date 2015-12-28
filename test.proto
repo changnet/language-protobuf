@@ -48,7 +48,11 @@ message Pserson
 
 service SearchService {
   rpc Search (SearchRequest) returns (SearchResponse);
-  rpc StreamingSearch (stream SearchRequest) returns (stream SearchReponse);
+}
+
+/* grpc stream,example:https://github.com/grpc/grpc/blob/master/test/proto/metrics.proto */
+service StreamSearchService {
+  rpc StreamingSearch (SearchRequest) returns (stream SearchReponse);
 }
 
 option java_package = "com.example.foo";

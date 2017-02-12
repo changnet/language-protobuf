@@ -31,14 +31,18 @@
       '1':
         'name': 'keyword.rpc.rpc.protobuf'
       '2':
-        'name': 'rpc.function.protobuf'
+        'name': 'entity.name.function.rpc.protobuf'
       '3':
-        'name': 'rpc.request.protobuf'
+        'name': 'keyword.rpc.stream.protobuf'
       '4':
-        'name': 'keyword.rpc.returns.protobuf'
+        'name': 'variable.parameter.rpc.request.protobuf'
       '5':
-        'name': 'rpc.response.protobuf'
-    'match': '\\b(rpc)\\s+(\\w+)\\s+\\(\\s*((?:stream\\s+)?[.|\\w]+)\\s*\\)\\s+(returns)\\s+\\(\\s*((?:stream\\s+)?[.|\\w]+)\\s*\\)'
+        'name': 'keyword.rpc.returns.protobuf'
+      '6':
+        'name': 'keyword.rpc.stream.protobuf'
+      '7':
+        'name': 'variable.parameter.rpc.response.protobuf'
+    'match': '\\b(rpc)\\s+(\\w+)\\s*\\(\\s*((?:stream\\s+)?)([.|\\w]+)\\s*\\)\\s+(returns)\\s+\\(\\s*((?:stream\\s+)?)([.|\\w]+)\\s*\\)'
     'name': 'rpc.protobuf'
   }
   {
